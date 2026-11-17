@@ -1,0 +1,12 @@
+# Site-wide settings. Page content lives in _data/*.yml.
+description: Personal academic homepage.
+url: https://jasonmusespresso.github.io
+
+markdown: kramdown
+
+exclude:
+  - README.md
+  - assets/README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor

@@ -1,0 +1,37 @@
+# Header: name, bio, links and photo.
+name: Jiajun Bao (鲍家君)
+
+# Names to bold in publication author lists.
+author_names:
+  - Jiajun Bao
+
+photo: assets/profile.jpg
+
+# Markdown: [link text](https://...), *italic*, **bold**.
+# Separate paragraphs with a blank line. Keep the two-space indent.
+bio: |
+  I'm a machine learning engineer at [Apple](https://machinelearning.apple.com/) in New York City, where I work on [real-time speech-to-speech translation](https://www.apple.com/newsroom/2025/09/new-apple-intelligence-features-are-available-today/) and the multilinguality of [Apple's Foundation Models](https://machinelearning.apple.com/research/introducing-third-generation-of-apple-foundation-models).
+
+  I received my Master's from the [Language Technologies Institute](https://www.lti.cs.cmu.edu/) at Carnegie Mellon University, where I worked with [Graham Neubig](https://www.phontron.com/) on multidimensional evaluation for question-answering systems.
+
+  Before that, I earned my Bachelor's in Computer Science at the University of Michigan, where I was advised by [David Jurgens](https://jurgens.people.si.umich.edu/) on large-scale data mining for online conversations, and worked with [Rada Mihalcea](https://web.eecs.umich.edu/~mihalcea/) on video understanding, specifically human action localization.
+
+# Shown in this order. Leave a url empty ("") to hide that link.
+links:
+  - label: Email
+    url: "mailto:jaysonbao20@gmail.com"
+  - label: CV
+    url: "assets/JiajunBao-CV.pdf"
+  - label: Scholar
+    url: "https://scholar.google.com/citations?user=AQQM1KQAAAAJ"
+  - label: Github
+    url: "https://github.com/jasonmusespresso/"
+  - label: LinkedIn
+    url: "https://www.linkedin.com/in/jiajun-bao/"
+  - label: Twitter
+    url: ""   # e.g. https://twitter.com/YOUR_HANDLE
+
+# Markdown. <span class="highlight">...</span> gives text the same yellow
+# background as highlighted papers.
+research_intro: |
+  I'm interested in [your research interests]. Some papers are <span class="highlight">highlighted</span>.

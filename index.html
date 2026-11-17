@@ -1,136 +1,104 @@
+---
+# Rendered by Jekyll from _data/profile.yml and _data/publications.yml.
+---
+{%- assign profile = site.data.profile -%}
 <!DOCTYPE HTML>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
-  <meta name="author" content="Jayson Bao">
+  <meta name="author" content="{{ profile.name }}">
+  <meta name="description" content="{{ site.description }}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jayson Bao</title>
+  <title>{{ profile.name }}</title>
 
-  <link rel="icon" type="image/png" href="data/favicon.png">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
 </head>
 
 <body>
-  <table
-    style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+  <table class="layout page">
     <tbody>
-      <tr style="padding:0px">
-        <td style="padding:0px">
+      <tr>
+        <td>
 
           <!-- ===== Header: bio + photo ===== -->
-          <table
-            style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+          <table class="layout">
             <tbody>
-              <tr style="padding:0px">
-                <td style="padding:2.5%;width:63%;vertical-align:middle">
-                  <p class="name" style="text-align: center;">
-                    Jayson Bao
-                  </p>
-                  <p>
-                    I am a
-                    <a href="#">[your role / title]</a>. My work focuses on
-                    <a href="#">[your research / interests]</a>.
-                  </p>
-                  <p>
-                    Previously, I <a href="#">[a sentence about your background]</a>.
-                    Write a couple of short paragraphs here about who you are and
-                    what you work on. Keep it plain and readable &mdash; this
-                    template is intentionally minimal.
-                  </p>
-                  <p style="text-align:center">
-                    <a href="mailto:you@example.com">Email</a> &nbsp;/&nbsp;
-                    <a href="data/cv.pdf">CV</a> &nbsp;/&nbsp;
-                    <a href="#">Bio</a> &nbsp;/&nbsp;
-                    <a href="https://scholar.google.com/">Google Scholar</a> &nbsp;/&nbsp;
-                    <a href="https://twitter.com/">Twitter</a> &nbsp;/&nbsp;
-                    <a href="https://github.com/">Github</a>
+              <tr>
+                <td class="bio">
+                  <p class="name">{{ profile.name }}</p>
+                  {{ profile.bio | markdownify }}
+                  {%- assign links = profile.links | where_exp: "link", "link.url != ''" %}
+                  <p class="links">
+                    {%- for link in links %}
+                    <a href="{{ link.url }}">{{ link.label }}</a>{% unless forloop.last %} &nbsp;/&nbsp;{% endunless %}
+                    {%- endfor %}
                   </p>
                 </td>
-                <td style="padding:2.5%;width:40%;max-width:40%">
-                  <a href="data/profile.jpg">
-                    <img style="width:100%;max-width:100%;border-radius:50%" alt="profile photo"
-                      src="data/profile.jpg" class="hoverZoomLink">
-                  </a>
+                {%- if profile.photo %}
+                <td class="photo">
+                  <a href="{{ profile.photo }}"><img src="{{ profile.photo }}" alt="profile photo"></a>
                 </td>
+                {%- endif %}
               </tr>
             </tbody>
           </table>
 
           <!-- ===== Research ===== -->
-          <table
-            style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+          <table class="layout">
             <tbody>
               <tr>
-                <td style="padding:20px 0px 5px 0px">
+                <td class="section-heading">
                   <h2>Research</h2>
-                  <p>
-                    A short intro line about your research. Representative papers are
-                    <span class="highlight">highlighted</span>.
-                  </p>
+                  {{ profile.research_intro | markdownify }}
                 </td>
               </tr>
             </tbody>
           </table>
 
-          <table
-            style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+          <table class="layout">
             <tbody>
-
-              <!-- ===== Publication row (copy this <tr> for each paper) ===== -->
-              <tr onmouseout="paper1_stop()" onmouseover="paper1_start()">
-                <td style="padding:20px;width:25%;vertical-align:middle">
+              {%- for paper in site.data.publications %}
+              <tr{% if paper.highlight %} class="highlight"{% endif %}>
+                <td class="paper-thumb">
+                  {%- if paper.thumb %}
                   <div class="one">
-                    <div class="two" id='paper1_image'>
-                      <img src='data/paper1_after.jpg' width="160" alt="paper thumbnail hover">
-                    </div>
-                    <img src='data/paper1_before.jpg' width="160" alt="paper thumbnail">
+                    {%- if paper.thumb_hover %}
+                    <div class="two"><img src="{{ paper.thumb_hover }}" width="160" alt="{{ paper.title }} (hover)"></div>
+                    {%- endif %}
+                    <img src="{{ paper.thumb }}" width="160" alt="{{ paper.title }}">
                   </div>
-                  <script type="text/javascript">
-                    function paper1_start() { document.getElementById('paper1_image').style.opacity = "1"; }
-                    function paper1_stop() { document.getElementById('paper1_image').style.opacity = "0"; }
-                    paper1_stop()
-                  </script>
+                  {%- endif %}
                 </td>
-                <td style="padding:20px;width:75%;vertical-align:middle">
-                  <a href="#">
-                    <span class="papertitle">Paper Title Goes Here</span>
-                  </a>
+                <td class="paper-info">
+                  {% if paper.url %}<a href="{{ paper.url }}">{% endif %}<span class="papertitle">{{ paper.title }}</span>{% if paper.url %}</a>{% endif %}
                   <br>
-                  <strong>Jayson Bao</strong>,
-                  Coauthor One,
-                  Coauthor Two
+                  {% for author in paper.authors -%}
+                  {%- if profile.author_names contains author %}<strong>{{ author }}</strong>{% else %}{{ author }}{% endif %}{% unless forloop.last %}, {% endunless %}
+                  {%- endfor %}
                   <br>
-                  <em>Venue</em>, 2026
+                  <em>{{ paper.venue }}</em>, {{ paper.year }}
+                  {%- if paper.links %}
                   <br>
-                  <a href="#">project page</a> /
-                  <a href="#">arXiv</a> /
-                  <a href="#">code</a>
-                  <p></p>
-                  <p>
-                    One or two sentences describing the paper.
-                  </p>
+                  {%- for link in paper.links %}
+                  <a href="{{ link[1] }}">{{ link[0] }}</a>{% unless forloop.last %} /{% endunless %}
+                  {%- endfor %}
+                  {%- endif %}
+                  {%- if paper.summary %}
+                  {{ paper.summary | markdownify }}
+                  {%- endif %}
                 </td>
               </tr>
-
+              {%- endfor %}
             </tbody>
           </table>
 
           <!-- ===== Footer ===== -->
-          <table
-            style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
-              <tr>
-                <td style="padding:0px">
-                  <br>
-                  <p style="text-align:right;font-size:small;">
-                    Template based on
-                    <a href="https://github.com/jonbarron/jonbarron.github.io">Jon Barron's website</a>.
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <p class="footer">
+            Template based on
+            <a href="https://github.com/jonbarron/jonbarron.github.io">Jon Barron's website</a>.
+          </p>
 
         </td>
       </tr>

@@ -82,6 +82,78 @@ h2 {
   -moz-transition: opacity 0.2s ease-in-out;
 }
 
-span.highlight {
+/* Layout (previously inline styles in index.html) */
+table.layout {
+  width: 100%;
+  border: 0px;
+  border-spacing: 0px;
+  border-collapse: separate;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+table.page {
+  max-width: 800px;
+}
+
+table.layout td {
+  padding: 0px;
+}
+
+table.layout td.bio {
+  padding: 2.5%;
+  width: 63%;
+  vertical-align: middle;
+}
+
+.name,
+.links {
+  text-align: center;
+}
+
+table.layout td.photo {
+  padding: 2.5%;
+  width: 40%;
+  max-width: 40%;
+}
+
+td.photo img {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 50%;
+}
+
+table.layout td.section-heading {
+  padding: 20px 0px 5px 0px;
+}
+
+table.layout td.paper-thumb {
+  padding: 20px;
+  width: 25%;
+  vertical-align: middle;
+}
+
+table.layout td.paper-info {
+  padding: 20px;
+  width: 75%;
+  vertical-align: middle;
+}
+
+.footer {
+  text-align: right;
+  font-size: small;
+  margin-top: 1.5em;
+}
+
+/* Hover thumbnail: .two sits on top of the base image and fades in. */
+.two {
+  opacity: 0;
+}
+
+tr:hover .two {
+  opacity: 1;
+}
+
+.highlight {
   background-color: #ffffd0;
 }

@@ -1,0 +1,22 @@
+# One entry per paper, shown in this order.
+#   title, authors, venue, year  required
+#   url                          link on the title (optional)
+#   highlight                    true to highlight the row (optional)
+#   thumb                        160px-wide image (optional)
+#   thumb_hover                  image shown on mouse-over (optional)
+#   links                        label: url, shown under the venue (optional)
+#   summary                      one or two sentences; Markdown allowed (optional)
+
+- title: Paper Title Goes Here
+  url: "#"
+  authors: [Jiajun Bao, Coauthor One, Coauthor Two]
+  venue: Venue
+  year: 2026
+  highlight: true
+  thumb: assets/paper1_before.jpg
+  thumb_hover: assets/paper1_after.jpg
+  links:
+    project page: "#"
+    arXiv: "#"
+    code: "#"
+  summary: One or two sentences describing the paper.
