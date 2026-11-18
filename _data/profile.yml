@@ -10,7 +10,7 @@ photo: assets/profile.jpg
 # Markdown: [link text](https://...), *italic*, **bold**.
 # Separate paragraphs with a blank line. Keep the two-space indent.
 bio: |
-  I'm a machine learning engineer at [Apple](https://machinelearning.apple.com/) in New York City, where I work on [real-time speech-to-speech translation](https://www.apple.com/newsroom/2025/09/new-apple-intelligence-features-are-available-today/) and the multilinguality of [Apple's Foundation Models](https://machinelearning.apple.com/research/introducing-third-generation-of-apple-foundation-models).
+  I'm a machine learning engineer at [Apple](https://machinelearning.apple.com/) in New York City, where I work on the multilinguality of [Apple's Foundation Models](https://machinelearning.apple.com/research/introducing-third-generation-of-apple-foundation-models), with a focus on the audio modality. Before that, I worked on their [real-time speech-to-speech translation](https://www.apple.com/newsroom/2025/09/new-apple-intelligence-features-are-available-today/) capability.
 
   I received my Master's from the [Language Technologies Institute](https://www.lti.cs.cmu.edu/) at Carnegie Mellon University, where I worked with [Graham Neubig](https://www.phontron.com/) on multidimensional evaluation for question-answering systems.
 
@@ -31,7 +31,6 @@ links:
   - label: Twitter
     url: ""   # e.g. https://twitter.com/YOUR_HANDLE
 
-# Markdown. <span class="highlight">...</span> gives text the same yellow
-# background as highlighted papers.
-research_intro: |
-  I'm interested in [your research interests]. Some papers are <span class="highlight">highlighted</span>.
+# Optional intro paragraph under the Research heading (Markdown).
+# research_intro: |
+#   I'm interested in ...

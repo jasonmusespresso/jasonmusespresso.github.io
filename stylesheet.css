@@ -154,6 +154,12 @@ tr:hover .two {
   opacity: 1;
 }
 
-.highlight {
-  background-color: #ffffd0;
+
+td.paper-info[colspan] {
+  width: 100%;
+}
+
+.note {
+  font-size: small;
+  color: #777;
 }

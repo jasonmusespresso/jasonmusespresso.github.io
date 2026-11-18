@@ -1,22 +1,64 @@
 # One entry per paper, shown in this order.
 #   title, authors, venue, year  required
 #   url                          link on the title (optional)
-#   highlight                    true to highlight the row (optional)
 #   thumb                        160px-wide image (optional)
 #   thumb_hover                  image shown on mouse-over (optional)
 #   links                        label: url, shown under the venue (optional)
-#   summary                      one or two sentences; Markdown allowed (optional)
+#   note                         small grey text after the venue (optional)
+# End an author's name with * for equal contribution; a note is added below the paper.
 
-- title: Paper Title Goes Here
-  url: "#"
-  authors: [Jiajun Bao, Coauthor One, Coauthor Two]
-  venue: Venue
+- title: "Terminal-Bench"
+  url: https://www.tbench.ai/
+  # From CITATION.cff on main (v4.0.0, 2026-08-26): 104 authors; Jiajun Bao is 31st.
+  authors: [Ryan Marten, Alex Shaw, Ivan Bercovich, "…", Jiajun Bao, "…", Ludwig Schmidt]
+  venue: Benchmark
   year: 2026
-  highlight: true
-  thumb: assets/paper1_before.jpg
-  thumb_hover: assets/paper1_after.jpg
+  note: since v3.0.0
   links:
-    project page: "#"
-    arXiv: "#"
-    code: "#"
-  summary: One or two sentences describing the paper.
+    project page: https://www.tbench.ai/
+    code: https://github.com/harbor-framework/terminal-bench
+
+- title: "ClawsBench: Evaluating Capability and Safety of LLM Productivity Agents in Simulated Workspaces"
+  url: https://arxiv.org/abs/2604.05172
+  authors: [Xiangyi Li*, Kyoung Whan Choe*, Yimin Liu, Xiaokun Chen, Chujun Tao, Bingran You, Wenbo Chen, Zonglin Di, Jiankai Sun, Shenghan Zheng, Jiajun Bao, Yuanli Wang, Weixiang Yan, Yiyuan Li, Han-chung Lee]
+  venue: Conference on Language Modeling (COLM)
+  year: 2026
+  links:
+    project page: https://clawsbench.com/
+    arXiv: https://arxiv.org/abs/2604.05172
+    code: https://github.com/benchflow-ai/ClawsBench
+
+- title: "SkillsBench: Benchmarking How Well Agent Skills Work Across Diverse Tasks"
+  url: https://arxiv.org/abs/2602.12670
+  # 78 authors on the paper; Jiajun Bao is 53rd.
+  authors: [Xiangyi Li*, Yimin Liu*, Wenbo Chen*, Bingran You*, "…", Jiajun Bao, "…", Dawn Song]
+  venue: arXiv preprint
+  year: 2026
+  links:
+    project page: https://skillsbench.ai/
+    paper: https://arxiv.org/abs/2602.12670
+    code: https://github.com/benchflow-ai/skillsbench
+
+- title: "Toward Machine Interpreting: Lessons from Human Interpreting Studies"
+  url: https://aclanthology.org/2025.emnlp-main.1191/
+  authors: [Matthias Sperber, Maureen de Seyssel, Jiajun Bao, Matthias Paulik]
+  venue: Empirical Methods in Natural Language Processing (EMNLP)
+  year: 2025
+  links:
+    paper: https://aclanthology.org/2025.emnlp-main.1191.pdf
+
+- title: "When Did It Happen? Duration-informed Temporal Localization of Narrated Actions in Vlogs"
+  url: https://doi.org/10.1145/3495211
+  authors: [Oana Ignat, Santiago Castro, Yuhang Zhou, Jiajun Bao, Dandan Shan, Rada Mihalcea]
+  venue: ACM Transactions on Multimedia Computing, Communications, and Applications (TOMM)
+  year: 2022
+  links:
+    paper: https://doi.org/10.1145/3495211
+
+- title: "Conversations Gone Alright: Quantifying and Predicting Prosocial Outcomes in Online Conversations"
+  url: https://dl.acm.org/doi/10.1145/3442381.3450122
+  authors: [Jiajun Bao*, Junjie Wu*, Yiming Zhang*, Eshwar Chandrasekharan, David Jurgens]
+  venue: The Web Conference (WWW)
+  year: 2021
+  links:
+    paper: https://dl.acm.org/doi/10.1145/3442381.3450122

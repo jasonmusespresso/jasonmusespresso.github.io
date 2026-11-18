@@ -51,7 +51,9 @@
               <tr>
                 <td class="section-heading">
                   <h2>Research</h2>
+                  {%- if profile.research_intro %}
                   {{ profile.research_intro | markdownify }}
+                  {%- endif %}
                 </td>
               </tr>
             </tbody>
@@ -60,33 +62,37 @@
           <table class="layout">
             <tbody>
               {%- for paper in site.data.publications %}
-              <tr{% if paper.highlight %} class="highlight"{% endif %}>
+              <tr>
+                {%- if paper.thumb %}
                 <td class="paper-thumb">
-                  {%- if paper.thumb %}
                   <div class="one">
                     {%- if paper.thumb_hover %}
                     <div class="two"><img src="{{ paper.thumb_hover }}" width="160" alt="{{ paper.title }} (hover)"></div>
                     {%- endif %}
                     <img src="{{ paper.thumb }}" width="160" alt="{{ paper.title }}">
                   </div>
-                  {%- endif %}
                 </td>
                 <td class="paper-info">
+                {%- else %}
+                <td class="paper-info" colspan="2">
+                {%- endif %}
                   {% if paper.url %}<a href="{{ paper.url }}">{% endif %}<span class="papertitle">{{ paper.title }}</span>{% if paper.url %}</a>{% endif %}
                   <br>
+                  {%- assign equal_contribution = false %}
                   {% for author in paper.authors -%}
-                  {%- if profile.author_names contains author %}<strong>{{ author }}</strong>{% else %}{{ author }}{% endif %}{% unless forloop.last %}, {% endunless %}
+                  {%- assign bare = author | remove: "*" %}
+                  {%- if bare != author %}{% assign equal_contribution = true %}{% endif %}
+                  {%- if profile.author_names contains bare %}<strong>{{ author }}</strong>{% else %}{{ author }}{% endif %}{% unless forloop.last %}, {% endunless %}
                   {%- endfor %}
                   <br>
                   <em>{{ paper.venue }}</em>, {{ paper.year }}
+                  {%- if equal_contribution %}&nbsp; <span class="note">* equal contribution</span>{% endif %}
+                  {%- if paper.note %}&nbsp; <span class="note">{{ paper.note }}</span>{% endif %}
                   {%- if paper.links %}
                   <br>
                   {%- for link in paper.links %}
                   <a href="{{ link[1] }}">{{ link[0] }}</a>{% unless forloop.last %} /{% endunless %}
                   {%- endfor %}
-                  {%- endif %}
-                  {%- if paper.summary %}
-                  {{ paper.summary | markdownify }}
                   {%- endif %}
                 </td>
               </tr>
