@@ -4,3 +4,6 @@ _site/
 Gemfile.lock
 vendor/
 .bundle/
+
+# Plaintext sources for password-protected pages (encrypt with tools/encrypt_page.py)
+.private/
