@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- A cloud drawn as one continuous line. -->
+  <style>
+    path { stroke: #1f2a37; }
+    @media (prefers-color-scheme: dark) { path { stroke: #e5e7eb; } }
+  </style>
+  <path fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"
+        d="M17 47
+           C9 47 6 38 13 34.5
+           C12 26 21 22 27 27
+           C29.5 15.5 46 15 48 28
+           C56 27 61 35 56 41
+           C58.5 46 53 48.5 49 47.5
+           L22 47.5"/>
+</svg>

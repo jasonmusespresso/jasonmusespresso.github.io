@@ -12,7 +12,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ profile.name }}</title>
 
-  <link rel="icon" type="image/png" href="assets/favicon.png">
+  {%- if profile.favicon_png %}
+  <link rel="icon" type="image/png" sizes="64x64" href="{{ profile.favicon_png }}">
+  {%- endif %}
+  {%- if profile.favicon %}
+  <link rel="icon" type="image/svg+xml" href="{{ profile.favicon }}">
+  {%- endif %}
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
 </head>
 
@@ -32,7 +37,14 @@
                   {%- assign links = profile.links | where_exp: "link", "link.url != ''" %}
                   <p class="links">
                     {%- for link in links %}
-                    <a href="{{ link.url }}">{{ link.label }}</a>{% unless forloop.last %} &nbsp;/&nbsp;{% endunless %}
+                    {%- if link.url contains "mailto:" %}
+                    {%- comment %} Email is stored reversed and assembled by email.js, so it never appears in the HTML. {% endcomment %}
+                    {%- assign reversed = link.url | remove: "mailto:" | split: "" | reverse | join: "" %}
+                    <a href="#" class="email" data-r="{{ reversed }}">{{ link.label }}</a>
+                    {%- else %}
+                    <a href="{{ link.url }}">{{ link.label }}</a>
+                    {%- endif %}
+                    {%- unless forloop.last %} &nbsp;/&nbsp;{% endunless %}
                     {%- endfor %}
                   </p>
                 </td>
@@ -110,6 +122,7 @@
       </tr>
     </tbody>
   </table>
+  <script src="assets/email.js"></script>
 </body>
 
 </html>

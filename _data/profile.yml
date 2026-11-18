@@ -6,6 +6,8 @@ author_names:
   - Jiajun Bao
 
 photo: assets/profile.jpg
+favicon: assets/favicon.svg       # browser-tab icon (single-line cloud)
+favicon_png: assets/favicon.png   # fallback for browsers without SVG icons
 
 # Markdown: [link text](https://...), *italic*, **bold**.
 # Separate paragraphs with a blank line. Keep the two-space indent.
@@ -21,7 +23,7 @@ links:
   - label: Email
     url: "mailto:jaysonbao20@gmail.com"
   - label: CV
-    url: "assets/JiajunBao-CV.pdf"
+    url: ""   # add assets/JiajunBao-CV.pdf, then set: "assets/JiajunBao-CV.pdf"
   - label: Scholar
     url: "https://scholar.google.com/citations?user=AQQM1KQAAAAJ"
   - label: Github
