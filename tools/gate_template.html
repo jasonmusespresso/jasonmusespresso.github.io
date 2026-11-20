@@ -127,14 +127,23 @@ function show(page, animate) {
 
 if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register("sw.js").catch(() => {});
 
-// Remembered on this device: open straight away.
+// Remembered on this device: open straight away. Pages published with a shared salt
+// (e.g. older versions in v1/) also open with a key remembered on a sibling page.
 (async () => {
-  const saved = localStorage.getItem(KEY);
-  if (!saved || !window.crypto?.subtle) return;
-  try {
-    const key = await crypto.subtle.importKey("raw", bytes(saved), "AES-GCM", false, ["decrypt"]);
-    show(await decrypt(await payload(), key), false);
-  } catch (e) { if (e.message !== "network") localStorage.removeItem(KEY); }
+  if (!window.crypto?.subtle) return;
+  const names = [KEY, ...Object.keys(localStorage).filter(k => k.startsWith("unlock:") && k !== KEY)];
+  const saved = names.map(k => [k, localStorage.getItem(k)]).filter(([, v]) => v);
+  if (!saved.length) return;
+  let p;
+  try { p = await payload(); } catch { return; }
+  for (const [name, raw] of saved) {
+    try {
+      const key = await crypto.subtle.importKey("raw", bytes(raw), "AES-GCM", false, ["decrypt"]);
+      const page = await decrypt(p, key);
+      if (name !== KEY) localStorage.setItem(KEY, raw);
+      return show(page, false);
+    } catch { if (name === KEY) localStorage.removeItem(KEY); }
+  }
 })();
 
 form.addEventListener("submit", async event => {

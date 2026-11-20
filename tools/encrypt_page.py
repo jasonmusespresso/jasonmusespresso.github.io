@@ -14,6 +14,8 @@ repo. Keep the plaintext source in .private/ (ignored by git).
 
 Usage:
     python3 tools/encrypt_page.py .private/trip/index.html journey/yosequoia --title "根与石 · The Cathedral of Roots and Stone"
+    python3 tools/encrypt_page.py .private/trip/v1.html journey/yosequoia/v1 --title "..." \
+        --salt-from journey/yosequoia/content.enc.json
 The PIN is read from $PAGE_PASSWORD, or prompted for if unset. An all-digit
 password gets a numeric PIN pad; anything else gets a password field.
 """
@@ -99,6 +101,9 @@ def main() -> None:
     parser.add_argument("source", help="plaintext HTML (keep it in .private/)")
     parser.add_argument("outdir", help="directory to publish, e.g. trip")
     parser.add_argument("--title", default="Private page", help="title shown on the gate (keep it non-revealing)")
+    parser.add_argument("--salt-from", metavar="JSON",
+                        help="reuse the salt of an existing content.enc.json, so a key remembered for that page "
+                             "(same PIN) also opens this one, e.g. older versions published under v1/")
     args = parser.parse_args()
 
     password = os.environ.get("PAGE_PASSWORD") or getpass.getpass("PIN or password: ")
@@ -110,7 +115,8 @@ def main() -> None:
         print("Note: short PINs can be brute-forced offline by a determined attacker; fine for short-lived info.")
 
     plaintext = inline_images(open(args.source, "rb").read(), os.path.dirname(os.path.abspath(args.source)))
-    salt, iv = os.urandom(16), os.urandom(12)
+    salt = base64.b64decode(json.load(open(args.salt_from))["salt"]) if args.salt_from else os.urandom(16)
+    iv = os.urandom(12)
     ciphertext = AESGCM(derive_key(password, salt)).encrypt(iv, plaintext, None)
     assert AESGCM(derive_key(password, salt)).decrypt(iv, ciphertext, None) == plaintext
 
